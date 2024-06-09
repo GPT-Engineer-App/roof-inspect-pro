@@ -1,8 +1,16 @@
-import React from "react";
+import React, { useState } from "react";
 import { ChakraProvider, Container, VStack, HStack, Box, Text, Button, Input, FormControl, FormLabel, Textarea, Image, IconButton } from "@chakra-ui/react";
 import { FaCamera, FaSave } from "react-icons/fa";
 
 const Index = () => {
+  const [images, setImages] = useState([]);
+
+  const handleImageUpload = (event) => {
+    const files = Array.from(event.target.files);
+    const newImages = files.map((file) => URL.createObjectURL(file));
+    setImages((prevImages) => [...prevImages, ...newImages]);
+  };
+
   return (
     <ChakraProvider>
       <Container maxW="container.xl" p={4}>
@@ -73,8 +81,13 @@ const Index = () => {
               Image Upload and Annotation
             </Text>
             <HStack spacing={4}>
-              <Image src="https://images.unsplash.com/photo-1516156008625-3a9d6067fab5?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w1MDcxMzJ8MHwxfHNlYXJjaHwxfHxyb29mJTIwaW5zcGVjdGlvbnxlbnwwfHx8fDE3MTc5MzcyNjJ8MA&ixlib=rb-4.0.3&q=80&w=1080" boxSize="150px" objectFit="cover" />
-              <IconButton aria-label="Upload Image" icon={<FaCamera />} size="lg" />
+              {images.map((image, index) => (
+                <Image key={index} src={image} boxSize="150px" objectFit="cover" />
+              ))}
+              <Input type="file" multiple onChange={handleImageUpload} display="none" id="file-upload" />
+              <FormLabel htmlFor="file-upload">
+                <IconButton as="span" aria-label="Upload Image" icon={<FaCamera />} size="lg" />
+              </FormLabel>
             </HStack>
           </Box>
 
