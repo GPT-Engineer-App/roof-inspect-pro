@@ -16,6 +16,31 @@ const Index = () => {
       <Container maxW="container.xl" p={4}>
         <VStack spacing={4} align="stretch">
           <Box bg="gray.100" p={4} borderRadius="md">
+            <Text fontSize="xl" fontWeight="bold">
+              Project Information
+            </Text>
+            <FormControl id="company-name" isRequired>
+              <FormLabel>Company Name</FormLabel>
+              <Input type="text" placeholder="Enter company name" />
+            </FormControl>
+            <FormControl id="client-contact" isRequired>
+              <FormLabel>Client Contact</FormLabel>
+              <Input type="text" placeholder="Enter client contact" />
+            </FormControl>
+            <FormControl id="client-email" isRequired>
+              <FormLabel>Client Email</FormLabel>
+              <Input type="email" placeholder="Enter client email" />
+            </FormControl>
+            <FormControl id="site-name" isRequired>
+              <FormLabel>Site Name</FormLabel>
+              <Input type="text" placeholder="Enter site name" />
+            </FormControl>
+            <FormControl id="site-address" isRequired>
+              <FormLabel>Site Address</FormLabel>
+              <Textarea placeholder="Enter site address" />
+            </FormControl>
+          </Box>
+          <Box bg="gray.100" p={4} borderRadius="md">
             <Text fontSize="2xl" fontWeight="bold">
               Roof Inspection App
             </Text>
